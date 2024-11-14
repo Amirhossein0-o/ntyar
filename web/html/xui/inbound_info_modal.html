@@ -231,6 +231,15 @@
           <tr-info-title class="tr-info-title">
             <a-tag color="purple">Subscription Link</a-tag>
             <a-tooltip title='{{ i18n "copy" }}'>
+              <a-button size="small" icon="snippets" id="copy-sub-linkreal" @click="copyToClipboard('copy-sub-linkreal', infoModal.subLinkreal)"></a-button>
+            </a-tooltip>
+          </tr-info-title>
+          <a :href="[[ infoModal.subLinkreal ]]" target="_blank">[[ infoModal.subLinkreal ]]</a>
+        </tr-info-row>
+        <tr-info-row class="tr-info-row">
+          <tr-info-title class="tr-info-title">
+            <a-tag color="purple">Subscription Host</a-tag>
+            <a-tooltip title='{{ i18n "copy" }}'>
               <a-button size="small" icon="snippets" id="copy-sub-link" @click="copyToClipboard('copy-sub-link', infoModal.subLink)"></a-button>
             </a-tooltip>
           </tr-info-title>
@@ -430,6 +439,7 @@
     index: null,
     isExpired: false,
     subLink: '',
+    subLinkreal: '',
     subJsonLink: '',
     show(dbInbound, index) {
       this.index = index;
@@ -445,8 +455,9 @@
       }
       if (this.clientSettings) {
         if (this.clientSettings.subId) {
-          this.subLink = this.genSubLink(this.clientSettings.subId);
-          this.subJsonLink = this.genSubJsonLink(this.clientSettings.subId);
+                    this.subLink = "https://netyar.amahhossein.click/wwa/"+this.clientSettings.subId;
+                    this.subLinkreal = this.genSubLink(this.clientSettings.subId);
+                   this.subJsonLink = this.genSubJsonLink(this.clientSettings.subId);
         }
       }
       this.visible = true;
